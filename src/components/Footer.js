@@ -4,7 +4,7 @@ import CardQuestions from "./CardQuestions";
 export default function Footer({finishedCards}) {
 
     return (
-        <Container>
+        <Container data-test="footer">
             {finishedCards}/{CardQuestions.length} CONCLUÍDOS
         </Container>
     )

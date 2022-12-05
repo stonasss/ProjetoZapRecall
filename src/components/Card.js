@@ -24,24 +24,37 @@ export default function Card({
 
     return (
         <>
-            <ClosedQuestion display={questionsClicked.includes(card) ? true : false}>
-                <p>Pergunta {cardNumber + 1}</p>
-                <img src={play} onClick={() => {
-                    setQuestionsClicked([...questionsClicked, card])
-                }}></img>
+            <ClosedQuestion 
+                data-test="flashcard"
+                display={questionsClicked.includes(card) ? true : false}
+            >
+                <p data-test="flashcard-text">Pergunta {cardNumber + 1}</p>
+                <img 
+                    data-test="play-btn" 
+                    src={play}
+                    onClick={() => {setQuestionsClicked([...questionsClicked, card])}}>  
+                </img>
             </ClosedQuestion>
 
-            <OpenQuestion display={!questionsClicked.includes(card) || questionsTurned.includes(card) ? true : false}>
-                <p>{card.question}</p>
+            <OpenQuestion 
+                data-test="flashcard"
+                display={!questionsClicked.includes(card) || questionsTurned.includes(card) ? true : false}
+            >
+                <p data-test="flashcard-text">{card.question}</p>
                 <img src={turn} onClick={() => {
                     setQuestionsTurned([...questionsTurned, card])
                 }}></img>
             </OpenQuestion>
 
-            <Answer display={!questionsTurned.includes(card) || questionsAnswered.includes(card) ? true : false}>
-                <p>{card.answer}</p>
+            <Answer 
+                data-test="flashcard"
+                display={!questionsTurned.includes(card) || questionsAnswered.includes(card) ? true : false}
+            >
+                <p data-test="flashcard-text">{card.answer}</p>
                 <span>
-                    <Button color="#FF3030"
+                    <Button 
+                        data-test="no-btn"
+                        color="#FF3030"
                         onClick={() => {
                             setQuestionsAnswered([...questionsAnswered, card])
                             setFinishedCards(finishedCards + 1)
@@ -50,7 +63,9 @@ export default function Card({
                         }}>Não lembrei
                     </Button>
 
-                    <Button color="#FF922E"
+                    <Button 
+                        data-test="partial-btn"
+                        color="#FF922E"
                         onClick={() => {
                             setQuestionsAnswered([...questionsAnswered, card])
                             setFinishedCards(finishedCards + 1)
@@ -59,7 +74,9 @@ export default function Card({
                         }}>Quase não lembrei
                     </Button>
 
-                    <Button color="#2FBE34"
+                    <Button 
+                        data-test="zap-btn"
+                        color="#2FBE34"
                         onClick={() => {
                             setQuestionsAnswered([...questionsAnswered, card])
                             setFinishedCards(finishedCards + 1)
@@ -71,11 +88,18 @@ export default function Card({
             </Answer>
 
             <AnsweredQuestion
+                data-test="flashcard"
                 display={!questionsAnswered.includes(card) ? true : false}
                 color={color}
             >
-                <p>Pergunta {cardNumber + 1}</p>
-                <img src={ansIcon}></img>
+                <p data-test="flashcard-text">Pergunta {cardNumber + 1}</p>
+                <img 
+                    data-test="no-btn"
+                    data-test="zap-btn"
+                    data-test="partial-btn"
+                    src={ansIcon}
+                >
+                </img>
             </AnsweredQuestion>
         </>
     )
