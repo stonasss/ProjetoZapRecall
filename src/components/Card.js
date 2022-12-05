@@ -65,7 +65,7 @@ export default function Card({
                             setFinishedCards(finishedCards + 1)
                             setColor("#FF3030")
                             setAnsIcon(wrong)
-                            setDt("no-btn")
+                            setDt("no-icon")
                         }}>Não lembrei
                     </Button>
 
@@ -77,7 +77,7 @@ export default function Card({
                             setFinishedCards(finishedCards + 1)
                             setColor("#FF922E")
                             setAnsIcon(almost)
-                            setDt("partial-btn")
+                            setDt("partial-icon")
                         }}>Quase não lembrei
                     </Button>
 
@@ -89,7 +89,7 @@ export default function Card({
                             setFinishedCards(finishedCards + 1)
                             setColor("#2FBE34")
                             setAnsIcon(right)
-                            setDt("zap-btn")
+                            setDt("zap-icon")
                         }}>Zap!
                     </Button>
                 </span>
