@@ -2,8 +2,11 @@ import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
 import CardQuestions from "./CardQuestions";
-import play from "../assets/img/seta_play.png"
-import turn from "../assets/img/seta_virar.png"
+import play from "../assets/img/seta_play.png";
+import turn from "../assets/img/seta_virar.png";
+import wrong from "../assets/img/icone_erro.png";
+import almost from "../assets/img/icone_quase.png";
+import right from "../assets/img/icone_certo.png";
 
 export default function Card({
     card,
@@ -13,9 +16,14 @@ export default function Card({
     questionsTurned,
     setQuestionsTurned,
     questionsAnswered,
-    setQuestionsAnswered
+    setQuestionsAnswered,
+    finishedCards,
+    setFinishedCards,
 }) {
-    console.log(questionsClicked)
+
+    const [color, setColor] = useState("")
+    const [ansIcon, setAnsIcon] = useState("")
+
     return (
         <>
             <ClosedQuestion display={questionsClicked.includes(card) ? true : false}>
@@ -32,20 +40,49 @@ export default function Card({
                 </img>
             </OpenQuestion>
 
-            <Answer display={questionsTurned.includes(card) ? false : true}>
+            <Answer display={!questionsTurned.includes(card) || questionsAnswered.includes(card) ? true : false}>
                 <p>{card.answer}</p>
                 <span>
-                    <Button color="#FF3030">
+                    <Button color="#FF3030"
+                        onClick={() => {
+                            setQuestionsAnswered([...questionsAnswered, card])
+                            setFinishedCards(finishedCards + 1)
+                            setColor("#FF3030")
+                            setAnsIcon(wrong)
+                        }}
+                    >
                         Não lembrei
                     </Button>
-                    <Button color="#FF922E">
+                    <Button color="#FF922E"
+                        onClick={() => {
+                            setQuestionsAnswered([...questionsAnswered, card])
+                            setFinishedCards(finishedCards + 1)
+                            setColor("#FF922E")
+                            setAnsIcon(almost)
+                        }}
+                    >
                         Quase não lembrei
                     </Button>
-                    <Button color="#2FBE34">
+                    <Button color="#2FBE34"
+                        onClick={() => {
+                            setQuestionsAnswered([...questionsAnswered, card])
+                            setFinishedCards(finishedCards + 1)
+                            setColor("#2FBE34")
+                            setAnsIcon(right)
+                        }}
+                    >
                         Zap!
                     </Button>
                 </span>
             </Answer>
+
+            <AnsweredQuestion
+                display={!questionsAnswered.includes(card) ? true : false}
+                color={color}
+            >
+                <p>Pergunta {cardNumber + 1}</p>
+                <img src={ansIcon}></img>
+            </AnsweredQuestion>
         </>
     )
 }
@@ -138,4 +175,27 @@ const Button = styled.button`
     border-radius: 5px;
     border: 1px solid;
     padding:5px;
+`
+
+const AnsweredQuestion = styled.div`
+    width: 300px;
+    height: 35px;
+    background-color: #FFFFFF;
+    margin: 12px;
+    padding: 15px;
+    box-shadow: 0px 4px 5px rgba(0, 0, 0, 0.15);
+    border-radius: 5px;
+    display: ${props => props.display ? 'none' : 'flex'};
+    align-items: center;
+    justify-content: space-between;
+
+    p {
+        font-family: 'Recursive';
+        font-style: normal;
+        font-weight: 700;
+        font-size: 16px;
+        line-height: 19px;
+        color: ${props => props.color};
+        text-decoration: line-through;
+    }
 `

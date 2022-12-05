@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Logo from "./Logo";
 import Card from "./Card";
+import Footer from "./Footer";
 import CardQuestions from "./CardQuestions";
 import { useState } from "react";
 
@@ -9,12 +10,13 @@ export default function BaseApp() {
     const [questionsClicked, setQuestionsClicked] = useState([])
     const [questionsTurned, setQuestionsTurned] = useState([])
     const [questionsAnswered, setQuestionsAnswered] = useState([])
+    const [finishedCards, setFinishedCards] = useState(0)
 
     return (
         <Screen>
 
             <Logo />
-            
+
             {CardQuestions.map((card, index) => (
                 <Card
                     card={card}
@@ -26,8 +28,14 @@ export default function BaseApp() {
                     setQuestionsTurned={setQuestionsTurned}
                     questionsAnswered={questionsAnswered}
                     setQuestionsAnswered={setQuestionsAnswered}
+                    finishedCards={finishedCards}
+                    setFinishedCards={setFinishedCards}
                 />
             ))}
+
+            <Footer
+                finishedCards={finishedCards}
+            />
         </Screen>
     )
 }
