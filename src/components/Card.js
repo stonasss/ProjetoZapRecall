@@ -41,7 +41,10 @@ export default function Card({
                 display={!questionsClicked.includes(card) || questionsTurned.includes(card) ? true : false}
             >
                 <p data-test="flashcard-text">{card.question}</p>
-                <img src={turn} onClick={() => {
+                <img 
+                    data-test="turn-btn"
+                    src={turn}
+                    onClick={() => {
                     setQuestionsTurned([...questionsTurned, card])
                 }}></img>
             </OpenQuestion>
