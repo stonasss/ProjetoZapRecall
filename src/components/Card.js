@@ -21,6 +21,7 @@ export default function Card({
 
     const [color, setColor] = useState("")
     const [ansIcon, setAnsIcon] = useState("")
+    const [dt, setDt] = useState("")
 
     return (
         <>
@@ -64,6 +65,7 @@ export default function Card({
                             setFinishedCards(finishedCards + 1)
                             setColor("#FF3030")
                             setAnsIcon(wrong)
+                            setDt("no-btn")
                         }}>Não lembrei
                     </Button>
 
@@ -75,6 +77,7 @@ export default function Card({
                             setFinishedCards(finishedCards + 1)
                             setColor("#FF922E")
                             setAnsIcon(almost)
+                            setDt("partial-btn")
                         }}>Quase não lembrei
                     </Button>
 
@@ -86,6 +89,7 @@ export default function Card({
                             setFinishedCards(finishedCards + 1)
                             setColor("#2FBE34")
                             setAnsIcon(right)
+                            setDt("zap-btn")
                         }}>Zap!
                     </Button>
                 </span>
@@ -99,7 +103,7 @@ export default function Card({
                 <p data-test="flashcard-text">Pergunta {cardNumber + 1}</p>
                 <img
                     alt="answer"
-                    data-test="no-btn zap-btn partial-btn"
+                    data-test={dt}
                     src={ansIcon}
                 >
                 </img>
