@@ -1,10 +1,7 @@
-import React from "react";
 import styled from "styled-components";
 import CardQuestions from "./CardQuestions";
 
-export default function Footer({
-    finishedCards
-}) {
+export default function Footer({finishedCards}) {
 
     return (
         <Container>

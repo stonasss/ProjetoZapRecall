@@ -1,19 +1,18 @@
-import React from "react";
 import styled from "styled-components";
 import logo from "../assets/img/logo.png"
 
 export default function Logo() {
-    return(
+    return (
         <Container>
             <Title>
-                <img src={logo} alt="logo"></img>
+                <img src={logo}></img>
                 <p>ZapRecall</p>
             </Title>
         </Container>
     )
 }
 
-const Container = styled.div`
+const Container = styled.header`
     display: flex;
     align-items: center;
     margin: 40px 0 20px 0;

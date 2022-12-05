@@ -1,7 +1,5 @@
-import React from "react";
 import styled from "styled-components";
 import { useState } from "react";
-import CardQuestions from "./CardQuestions";
 import play from "../assets/img/seta_play.png";
 import turn from "../assets/img/seta_virar.png";
 import wrong from "../assets/img/icone_erro.png";
@@ -28,16 +26,16 @@ export default function Card({
         <>
             <ClosedQuestion display={questionsClicked.includes(card) ? true : false}>
                 <p>Pergunta {cardNumber + 1}</p>
-                <img src={play}
-                    onClick={() => { setQuestionsClicked([...questionsClicked, card]) }}>
-                </img>
+                <img src={play} onClick={() => {
+                    setQuestionsClicked([...questionsClicked, card])
+                }}></img>
             </ClosedQuestion>
 
             <OpenQuestion display={!questionsClicked.includes(card) || questionsTurned.includes(card) ? true : false}>
                 <p>{card.question}</p>
-                <img src={turn}
-                    onClick={() => { setQuestionsTurned([...questionsTurned, card]) }}>
-                </img>
+                <img src={turn} onClick={() => {
+                    setQuestionsTurned([...questionsTurned, card])
+                }}></img>
             </OpenQuestion>
 
             <Answer display={!questionsTurned.includes(card) || questionsAnswered.includes(card) ? true : false}>
@@ -49,29 +47,25 @@ export default function Card({
                             setFinishedCards(finishedCards + 1)
                             setColor("#FF3030")
                             setAnsIcon(wrong)
-                        }}
-                    >
-                        Não lembrei
+                        }}>Não lembrei
                     </Button>
+
                     <Button color="#FF922E"
                         onClick={() => {
                             setQuestionsAnswered([...questionsAnswered, card])
                             setFinishedCards(finishedCards + 1)
                             setColor("#FF922E")
                             setAnsIcon(almost)
-                        }}
-                    >
-                        Quase não lembrei
+                        }}>Quase não lembrei
                     </Button>
+
                     <Button color="#2FBE34"
                         onClick={() => {
                             setQuestionsAnswered([...questionsAnswered, card])
                             setFinishedCards(finishedCards + 1)
                             setColor("#2FBE34")
                             setAnsIcon(right)
-                        }}
-                    >
-                        Zap!
+                        }}>Zap!
                     </Button>
                 </span>
             </Answer>

@@ -14,7 +14,6 @@ export default function BaseApp() {
 
     return (
         <Screen>
-
             <Logo />
 
             {CardQuestions.map((card, index) => (
