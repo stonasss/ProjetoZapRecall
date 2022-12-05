@@ -24,38 +24,39 @@ export default function Card({
 
     return (
         <>
-            <ClosedQuestion 
+            <ClosedQuestion
                 data-test="flashcard"
                 display={questionsClicked.includes(card) ? true : false}
             >
                 <p data-test="flashcard-text">Pergunta {cardNumber + 1}</p>
-                <img 
-                    data-test="play-btn" 
+                <img
+                    alt="play"
+                    data-test="play-btn"
                     src={play}
-                    onClick={() => {setQuestionsClicked([...questionsClicked, card])}}>  
+                    onClick={() => { setQuestionsClicked([...questionsClicked, card]) }}>
                 </img>
             </ClosedQuestion>
 
-            <OpenQuestion 
+            <OpenQuestion
                 data-test="flashcard"
                 display={!questionsClicked.includes(card) || questionsTurned.includes(card) ? true : false}
             >
                 <p data-test="flashcard-text">{card.question}</p>
-                <img 
+                <img
+                    alt="turn"
                     data-test="turn-btn"
                     src={turn}
-                    onClick={() => {
-                    setQuestionsTurned([...questionsTurned, card])
-                }}></img>
+                    onClick={() => { setQuestionsTurned([...questionsTurned, card]) }}>
+                </img>
             </OpenQuestion>
 
-            <Answer 
+            <Answer
                 data-test="flashcard"
                 display={!questionsTurned.includes(card) || questionsAnswered.includes(card) ? true : false}
             >
                 <p data-test="flashcard-text">{card.answer}</p>
                 <span>
-                    <Button 
+                    <Button
                         data-test="no-btn"
                         color="#FF3030"
                         onClick={() => {
@@ -66,7 +67,7 @@ export default function Card({
                         }}>Não lembrei
                     </Button>
 
-                    <Button 
+                    <Button
                         data-test="partial-btn"
                         color="#FF922E"
                         onClick={() => {
@@ -77,7 +78,7 @@ export default function Card({
                         }}>Quase não lembrei
                     </Button>
 
-                    <Button 
+                    <Button
                         data-test="zap-btn"
                         color="#2FBE34"
                         onClick={() => {
@@ -96,10 +97,9 @@ export default function Card({
                 color={color}
             >
                 <p data-test="flashcard-text">Pergunta {cardNumber + 1}</p>
-                <img 
-                    data-test="no-btn"
-                    data-test="zap-btn"
-                    data-test="partial-btn"
+                <img
+                    alt="answer"
+                    data-test="no-btn zap-btn partial-btn"
                     src={ansIcon}
                 >
                 </img>
@@ -195,7 +195,7 @@ const Button = styled.button`
     background: ${props => props.color};
     border-radius: 5px;
     border: 1px solid;
-    padding:5px;
+    padding: 5px;
 `
 
 const AnsweredQuestion = styled.div`
